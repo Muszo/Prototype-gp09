@@ -1,4 +1,4 @@
-package buccaneer.java.Inventory;
+package buccaneer.java.inventory;
 
 import buccaneer.java.cards.CardDeck;
 
