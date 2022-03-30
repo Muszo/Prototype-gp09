@@ -1,36 +1,34 @@
 package buccaneer.java.cards;
 
-import buccaneer.java.cards.enums.Crew;
 import buccaneer.java.cards.exeptions.CardNotInDeckException;
 import buccaneer.java.cards.exeptions.EmptyDeckException;
 import buccaneer.java.cards.exeptions.UpperDeckLimitReachedException;
-import javafx.scene.image.Image;
 
 import java.util.Stack;
 
-public class CrewCardDeck implements Deck<Card> {
+public class CardDeck implements Deck<Card> {
 
-    private int maxCardsInDeck;
-    private Stack<Card> deck;
-    private int deckSize;
+    private final int maxCardsInDeck;
+    private final Stack<Card> deck;
+    private int currentDeckSize;
 
-    public CrewCardDeck() {
+    public CardDeck() {
         this.deck = new Stack<>();
-        this.deckSize = 0;
+        this.currentDeckSize = 0;
         maxCardsInDeck = Integer.MAX_VALUE;
     }
 
-    public CrewCardDeck(int maxCardsInDeck) {
+    public CardDeck(int maxCardsInDeck) {
         this.deck = new Stack<>();
-        this.deckSize = 0;
+        this.currentDeckSize = 0;
         this.maxCardsInDeck = maxCardsInDeck;
     }
 
     @Override
     public void addCard(Card card) {
-        if (deckSize < maxCardsInDeck) {
+        if (currentDeckSize < maxCardsInDeck) {
             deck.push(card);
-            deckSize++;
+            currentDeckSize++;
         } else {
             throw new UpperDeckLimitReachedException("Deck limit exceeded.\n The deck limit is " + maxCardsInDeck);
         }
@@ -38,8 +36,9 @@ public class CrewCardDeck implements Deck<Card> {
 
     @Override
     public void addAllCards(Card[] cards) {
-        if (cards.length + deckSize < maxCardsInDeck) {
+        if (cards.length + currentDeckSize < maxCardsInDeck) {
             for (Card card : cards) {
+                currentDeckSize++;
                 deck.push(card);
             }
         } else {
@@ -49,7 +48,8 @@ public class CrewCardDeck implements Deck<Card> {
 
     @Override
     public Card popCard(Card card) {
-        if (deckSize > 0) {
+        if (currentDeckSize > 0) {
+            currentDeckSize--;
             return deck.pop();
         } else {
             throw new EmptyDeckException("Deck is empty");
@@ -60,6 +60,7 @@ public class CrewCardDeck implements Deck<Card> {
     public void removeCard(Card card) {
         if (isCardInDeck(card)) {
             deck.remove(card);
+            currentDeckSize--;
         } else {
             throw new CardNotInDeckException("Card does not exist.");
         }
@@ -73,6 +74,6 @@ public class CrewCardDeck implements Deck<Card> {
 
     @Override
     public int getSize() {
-        return deckSize;
+        return currentDeckSize;
     }
 }
