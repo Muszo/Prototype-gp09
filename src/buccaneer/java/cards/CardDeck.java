@@ -6,7 +6,7 @@ import buccaneer.java.cards.exeptions.UpperDeckLimitReachedException;
 
 import java.util.Stack;
 
-public class CardDeck implements Deck<Card> {
+public class CardDeck<Card> implements Deck<Card> {
 
     private final int maxCardsInDeck;
     private final Stack<Card> deck;
@@ -47,7 +47,7 @@ public class CardDeck implements Deck<Card> {
     }
 
     @Override
-    public Card popCard(Card card) {
+    public Card popCard() {
         if (currentDeckSize > 0) {
             currentDeckSize--;
             return deck.pop();
@@ -64,6 +64,15 @@ public class CardDeck implements Deck<Card> {
         } else {
             throw new CardNotInDeckException("Card does not exist.");
         }
+    }
+
+
+    @Override
+    public Card extractCard(Card card) {
+        if (isCardInDeck(card)) {
+            deck.remove(card);
+        }
+        return card;
     }
 
     @Override

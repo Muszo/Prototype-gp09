@@ -6,9 +6,11 @@ public interface Deck<E> {
 
     void addAllCards(E[] cards);
 
-    E popCard(E card);
+    E popCard();
 
     void removeCard(E card);
+
+    E extractCard(E card);
 
     boolean isCardInDeck(E card);
 
