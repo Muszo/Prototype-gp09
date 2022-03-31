@@ -33,4 +33,8 @@ public class PortInventory {
     }
 
 
+    public CrewCard extractCrewCard(CrewCard card) {
+        return crewDeck.extractCard(card);
+    }
+
 }

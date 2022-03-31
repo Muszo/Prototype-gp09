@@ -1,0 +1,2 @@
+TODO figure out better way for storing cards
+TODO PlayerInventory interface needs logic for storing unique chance cards
