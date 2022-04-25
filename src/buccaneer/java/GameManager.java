@@ -49,6 +49,17 @@ public class GameManager extends Application {
 
 
     /**
+     * Checks if a duplicate name occurs in the list
+     *
+     * @param name name of the player
+     * @return false if list does not have duplicates
+     */
+
+    private boolean consistDuplicates(String name) {
+        return playerNames.contains(name);
+    }
+
+    /**
      * Checks if the name is too long
      *
      * @param name - name given by player

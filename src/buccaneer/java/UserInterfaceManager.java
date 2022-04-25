@@ -15,7 +15,7 @@ public class UserInterfaceManager {
       private final Image blueBoat;
       private final Image greenBoat;
       private final Image redBoat;
-      private final Image yellowBoat;
+      private final Image yellowBoat;6
 
  */
 
@@ -25,6 +25,7 @@ public class UserInterfaceManager {
 
 
     }
+
 
 
     public void assignNamesToPlayerBoard(List<String> names) {
@@ -37,7 +38,8 @@ public class UserInterfaceManager {
     //TODO error alert type for duplicates and incorrect names
 
     public String playerEnterNameBox() {
-        TextInputDialog textInputDialog = new TextInputDialog("samba");
+        TextInputDialog textInputDialog = new TextInputDialog("Your name");
+        textInputDialog.getEditor().clear();
         textInputDialog.showAndWait();
         return textInputDialog.getEditor().getText();
     }
