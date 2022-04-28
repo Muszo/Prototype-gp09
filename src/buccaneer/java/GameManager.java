@@ -42,8 +42,10 @@ public class GameManager extends Application {
             String name = this.userInterfaceManager.playerEnterNameBox();
 
             if (isNameCorrectLength(name) && areNameCharactersValid(name)) {
-                playerNames.add(name);
+                this.playerNames.add(name);
                 System.out.println(name + "\n list size: " + playerNames.size());
+            } else if (this.playerNames.contains(name)) {
+                userInterfaceManager.displayDuplicateNameMessage(name);
             }
         }
     }
@@ -79,7 +81,7 @@ public class GameManager extends Application {
      * @return false if the name is invalid
      */
     private boolean areNameCharactersValid(String name) {
-        String pattern = "^[a-z]+$";
+        String pattern = "^[A-z]+$";
         return name.matches(pattern);
     }
 }

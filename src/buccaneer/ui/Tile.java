@@ -18,7 +18,6 @@ public class Tile extends Rectangle {
 
     public Tile(double tileHeight, double tileWidth, double xPosition, double yPosition, String hexValueColor) {
         label = new Label();
-
         setHeight(tileHeight);
         setWidth(tileWidth);
         setX(xPosition);

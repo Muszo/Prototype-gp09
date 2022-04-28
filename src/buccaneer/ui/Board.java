@@ -8,8 +8,8 @@ public class Board {
     private static final int BOARD_HEIGHT = 20;
     private static final int BOARD_WIDTH = 20;
 
-    private static final int TILE_HEIGHT = 35;
-    private static final int TILE_WIDTH = 35;
+    private static final int TILE_HEIGHT = 40;
+    private static final int TILE_WIDTH = 40;
     private final Pane pane;
 
 

@@ -3,7 +3,7 @@ package buccaneer.ui;
 import buccaneer.java.Settings;
 import javafx.scene.layout.VBox;
 
-public class PlayerBoard extends VBox {
+public class PlayerNameBoard extends VBox {
 
     private static final double MODULE_WIDTH = 200;
     private static final double MODULE_HEIGHT = 50;
@@ -11,7 +11,7 @@ public class PlayerBoard extends VBox {
     private static final NameModule PLAYERS = new NameModule("PLAYERS", MODULE_HEIGHT, MODULE_WIDTH);
 
 
-    public PlayerBoard(String[] playerNames) {
+    public PlayerNameBoard(String[] playerNames) {
         NameModule[] names = new NameModule[Settings.NUMBER_OF_PLAYERS];
 
         PLAYERS.centerLabelInModule();
