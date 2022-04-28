@@ -32,6 +32,7 @@ public class GameManager extends Application {
 
         getPlayerNames();
         userInterfaceManager.assignNamesToPlayerBoard(playerNames);
+        userInterfaceManager.generateBoard();
         stage.setScene(scene);
         stage.show();
     }

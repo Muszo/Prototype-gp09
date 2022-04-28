@@ -1,5 +1,6 @@
 package buccaneer.java;
 
+import buccaneer.ui.Board;
 import buccaneer.ui.PlayerBoard;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.BorderPane;
@@ -8,6 +9,8 @@ import java.util.List;
 
 public class UserInterfaceManager {
     private PlayerBoard playerBoard;
+
+    private final Board board;
     private final BorderPane root;
 
 
@@ -20,12 +23,17 @@ public class UserInterfaceManager {
  */
 
     public UserInterfaceManager() {
-
+        this.board = new Board();
         this.root = new BorderPane();
 
 
     }
 
+
+    public void generateBoard() {
+
+        this.root.setLeft(board.getPane());
+    }
 
 
     public void assignNamesToPlayerBoard(List<String> names) {
