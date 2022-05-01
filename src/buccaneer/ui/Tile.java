@@ -1,45 +1,51 @@
 package buccaneer.ui;
 
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 
 public class Tile extends Rectangle {
 
-    private boolean isOccupied;
-    private final Image image;
+    private static final int TILE_HEIGHT = 40;
 
-    private final Label label;
+    private static final int TILE_WIDTH = 40;
+
+    private final double xPosition;
+
+    private final double yPosition;
+    private boolean isOccupied;
+
+
+
 
     /*
     UNDER CONSTRUCTION
      */
 
-    public Tile(double tileHeight, double tileWidth, double xPosition, double yPosition, String hexValueColor) {
-        label = new Label();
-        setHeight(tileHeight);
-        setWidth(tileWidth);
-        setX(xPosition);
-        setY(yPosition);
-        relocate(xPosition * tileWidth, yPosition * tileWidth);
 
+    public Tile(double xPosition, double yPosition, String hexValueColor) {
+        this.xPosition = xPosition;
+        this.yPosition = yPosition;
 
-        image = new Image("buccaneer/ui/graphics/boats/blue_boat.png");
-
-        ImageView imageView = new ImageView(image);
-
-        imageView.setFitHeight(35);
-        imageView.setFitWidth(35);
-
-        label.setGraphic(imageView);
+        setHeight(TILE_HEIGHT);
+        setWidth(TILE_WIDTH);
+        setPosition(this.xPosition, this.yPosition);
+        relocate(xPosition * TILE_WIDTH, yPosition * TILE_HEIGHT);
 
         setStyle("-fx-stroke: green;-fx-stroke-width: 4;-fx-background-color: " + hexValueColor);
+
     }
 
-    public Label ship() {
-        return label;
+
+    public double getCenterX() {
+
+        return (this.xPosition * TILE_WIDTH) + (TILE_WIDTH / 2.0);
     }
+
+    public double getCenterY() {
+
+        return (this.yPosition * TILE_HEIGHT) + (TILE_HEIGHT / 2.0);
+    }
+
 
     public boolean isOccupied() {
         return isOccupied;
@@ -47,5 +53,10 @@ public class Tile extends Rectangle {
 
     public void setOccupied(boolean occupied) {
         isOccupied = occupied;
+    }
+
+    private void setPosition(double x, double y) {
+        setX(x);
+        setY(y);
     }
 }

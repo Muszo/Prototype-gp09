@@ -4,22 +4,26 @@ import buccaneer.java.cards.exeptions.CardNotInDeckException;
 import buccaneer.java.cards.exeptions.EmptyDeckException;
 import buccaneer.java.cards.exeptions.UpperDeckLimitReachedException;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class CardDeck<Card> implements Deck<Card> {
 
     private final int maxCardsInDeck;
-    private final Stack<Card> deck;
+   // private final Stack<Card> deck;
+
+    Queue<Card> deck;
     private int currentDeckSize;
 
     public CardDeck() {
-        this.deck = new Stack<>();
+        this.deck = new LinkedList<>();
         this.currentDeckSize = 0;
         maxCardsInDeck = Integer.MAX_VALUE;
     }
 
     public CardDeck(int maxCardsInDeck) {
-        this.deck = new Stack<>();
+        this.deck = new LinkedList<>();
         this.currentDeckSize = 0;
         this.maxCardsInDeck = maxCardsInDeck;
     }
@@ -27,7 +31,7 @@ public class CardDeck<Card> implements Deck<Card> {
     @Override
     public void addCard(Card card) {
         if (currentDeckSize < maxCardsInDeck) {
-            deck.push(card);
+            deck.add(card);
             currentDeckSize++;
         } else {
             throw new UpperDeckLimitReachedException("Deck limit exceeded.\n The deck limit is " + maxCardsInDeck);
@@ -39,7 +43,7 @@ public class CardDeck<Card> implements Deck<Card> {
         if (cards.length + currentDeckSize < maxCardsInDeck) {
             for (Card card : cards) {
                 currentDeckSize++;
-                deck.push(card);
+                deck.add(card);
             }
         } else {
             throw new UpperDeckLimitReachedException("Deck limit exceeded.\n The deck limit is " + maxCardsInDeck);
@@ -50,7 +54,7 @@ public class CardDeck<Card> implements Deck<Card> {
     public Card popCard() {
         if (currentDeckSize > 0) {
             currentDeckSize--;
-            return deck.pop();
+            return deck.remove();
         } else {
             throw new EmptyDeckException("Deck is empty");
         }
